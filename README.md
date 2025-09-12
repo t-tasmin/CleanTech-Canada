@@ -56,17 +56,3 @@ As the energy sector shifts toward low-carbon technologies, data-driven tools ar
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-1. Clone the repo

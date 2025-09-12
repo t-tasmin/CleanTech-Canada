@@ -27,4 +27,46 @@ Run basic demand forecasting models via the ML microservice.
 Modular design for easy scalability and feature expansion.
 
 **Setup**
+
+1. Clone the repo
+git clone https://github.com/<your-username>/CleanTech-Canada.git
+cd CleanTech-Canada
+
+2. Backend Setup (Node.js)
+cd backend
+npm install
+npm start
+
+3. Frontend Setup (React)
+cd frontend
+npm install
+npm start
+
+4. ML Service (FastAPI)
+cd ml-service
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
+5. Database (PostgreSQL)
+Create a database named cleantech_db.
+Update .env in backend with your DB credentials.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. Clone the repo

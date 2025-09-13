@@ -1,46 +1,39 @@
-// Controller function to fetch all demand data
-const getAllDemand = (req, res) => { // define controller function
-  const dummyData = [ // create hardcoded dummy data
-    { date: "2025-01-01", hour: 1, marketDemand: 17247, ontarioDemand: 13887 },
-    { date: "2025-01-01", hour: 2, marketDemand: 17355, ontarioDemand: 13722 }
-  ];
-
-  res.json({ // send JSON response to client
-    success: true, // indicate success
-    message: "Fetched demand data", // response message
-    data: dummyData // return dummy data
-  });
-};
-
+const pool = require("../../database"); // import DB connection
 
 //*************************************************************************/
-
-const createDemand = (req, res) => { // define controller function
-  const { date, hour, marketDemand, ontarioDemand } = req.body; // extract data from request body
-  
-  // Basic validation (optional but recommended)
-  if (!date || !hour || !marketDemand || !ontarioDemand) {
-    return res.status(400).json({
-      success: false,
-      message: "Missing required fields: date, hour, marketDemand, ontarioDemand"
+// GET all demand data
+const getAllDemand = async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM demand ORDER BY date, hour;");
+    res.json({
+      success: true,
+      message: "Fetched demand data",
+      data: result.rows
     });
+  } catch (err) {
+    console.error("❌ Error fetching demand:", err);
+    res.status(500).json({ success: false, error: "Database error" });
   }
-  
-  // In a real app, you'd save to database here
-  // For now, we'll just simulate successful creation
-  const newDemand = { // create new demand object
-    date,
-    hour,
-    marketDemand,
-    ontarioDemand,
-    id: Date.now() // simulate auto-generated ID
-  };
-  
-  res.status(201).json({ // send JSON response with 201 (Created) status
-    success: true, // indicate success
-    message: "Demand data created successfully", // response message
-    data: newDemand // return the created demand data
-  });
+};
+//*************************************************************************/
+// POST new demand entry
+const createDemand = async (req, res) => {
+  const { date, hour, market_demand, ontario_demand } = req.body;
+  try {
+    const result = await pool.query(
+      "INSERT INTO demand (date, hour, market_demand, ontario_demand) VALUES ($1, $2, $3, $4) RETURNING *",
+      [date, hour, market_demand, ontario_demand]
+    );
+    res.status(201).json({
+      success: true,
+      message: "New demand record added",
+      data: result.rows[0]
+    });
+  } catch (err) {
+    console.error("❌ Error inserting demand:", err);
+    res.status(500).json({ success: false, error: "Database error" });
+  }
 };
 
-module.exports = { getAllDemand, createDemand }; // export controller function
+//*************************************************************************/
+module.exports = { getAllDemand, createDemand };

@@ -1,22 +1,24 @@
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require("express"); // import express
+const dotenv = require("dotenv"); // import dotenv for env variables
 
-// Load environment variables
-dotenv.config();
+dotenv.config(); // load .env file
+const app = express(); // create express app
 
-const app = express();
+app.use(express.json()); // middleware to parse JSON request bodies
 
-// Middleware
-app.use(express.json()); // Parse JSON requests
+// Import routes
+const demandRoutes = require("./routes/demandRoutes"); // import demand routes
+const supplyRoutes = require("./routes/supplyRoutes"); // import supply routes
 
-// Example route
-app.get("/", (req, res) => {
-  res.send("Welcome to cleanTechAI API 🚀");
+// Use routes
+app.use("/api/demand", demandRoutes); // mount demand routes at /api/demand
+app.use("/api/supply", supplyRoutes); // mount supply routes at /api/supply
+
+// Default root endpoint
+app.get("/", (req, res) => { // define GET /
+  res.send("Welcome to cleanTechAI API 🚀"); // send response text
 });
 
-// Import routes (later we’ll add demandRoutes, supplyRoutes, etc.)
-// const demandRoutes = require("./routes/demandRoutes");
-// app.use("/api/demand", demandRoutes);
+module.exports = app; // export app for server.js
 
-module.exports = app;
 

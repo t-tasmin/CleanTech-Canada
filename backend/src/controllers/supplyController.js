@@ -46,7 +46,7 @@ const getSupplyById = async (req, res) => {
 // POST new supply entry
 const createSupply = async (req, res) => {
     try {
-        const { date, hour, generator, fuel, measurement, value } = req.body;
+        const {date, hour, generator, fuel, measurement, value } = req.body;
         
         // Basic validation
         if (!date || hour === undefined || !generator || !fuel || !measurement || value === undefined) {
@@ -192,6 +192,7 @@ const getSuppliesByFuel = async (req, res) => {
     try {
         const { fuel } = req.params;
         const supplies = await Supply.findByFuel(fuel);
+        console.log("###"+supplies);
         
         res.json({
             success: true,

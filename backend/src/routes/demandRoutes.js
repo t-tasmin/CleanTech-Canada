@@ -1,10 +1,9 @@
-// routes/demandRoutes.js
 const express = require('express');
 const router = express.Router();
-const { 
-    getAllDemand, 
+const {
+    getAllDemand,
     getDemandById,
-    createDemand, 
+    createDemand,
     updateDemand,
     deleteDemand,
     getDemandsByDate,
@@ -13,17 +12,18 @@ const {
     getDemandStats
 } = require('../controllers/demandController');
 
-// Existing routes
-router.get('/', getAllDemand);
-router.post('/', createDemand);
 
-// New routes you can add
-router.get('/stats', getDemandStats);
-router.get('/date/:date', getDemandsByDate);
-router.get('/date/:date/hour/:hour', getDemandByDateAndHour);
-router.get('/range', getDemandsByDateRange); // ?startDate=2024-01-01&endDate=2024-01-31
-router.get('/:id', getDemandById);
-router.put('/:id', updateDemand);
-router.delete('/:id', deleteDemand);
+// Analytics / Queries
+router.get('/stats', getDemandStats);           // Demand stats
+router.get('/date/:date', getDemandsByDate);    // Demands for a given date
+router.get('/date/:date/hour/:hour', getDemandByDateAndHour); // Demand at date/hour
+router.get('/range', getDemandsByDateRange);    // Demands in date range (?startDate=...&endDate=...)
+
+// Base CRUD
+router.get('/', getAllDemand);                  // Get all demands
+router.post('/', createDemand);                 // Create new demand
+router.get('/:id', getDemandById);              // Get demand by ID
+router.put('/:id', updateDemand);               // Update demand
+router.delete('/:id', deleteDemand);            // Delete demand
 
 module.exports = router;

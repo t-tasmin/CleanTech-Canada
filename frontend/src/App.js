@@ -5,8 +5,8 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Supply from "./pages/Supply";
 import Demand from "./pages/Demand";
-import Calculator from "./pages/Calculator";
-import About from "./pages/About";
+import Calculator from "./pages/CostCalculator";
+import About from "./pages/About.js";
 
 function App() {
   return (

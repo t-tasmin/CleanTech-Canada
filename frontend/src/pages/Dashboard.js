@@ -1,13 +1,20 @@
-import React from 'react';
-import DemandChart from '../components/DemandChart';
-import SupplyChart from '../components/SupplyChart';
+import React from "react";
+import DemandSupplyChart from "../components/DemandSupplyChart";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Ontario Energy Dashboard</h1>
-      <DemandChart />
-      <SupplyChart />
+    <div className="dashboard-container">
+      {/* Page Title */}
+      <div className="dashboard-header">
+        <h1 className="dashboard-title">Ontario Energy Dashboard</h1>
+        <p className="dashboard-subtitle">Real-time electricity supply and demand data</p>
+      </div>
+
+      {/* Chart Section */}
+      <div className="chart-section">
+        <DemandSupplyChart />
+      </div>
     </div>
   );
 };

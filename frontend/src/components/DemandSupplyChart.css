@@ -1,0 +1,70 @@
+.chart-container {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Title */
+.chart-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 32px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #0ea5e9, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Horizontal charts layout */
+.charts-horizontal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* Each chart block */
+.chart-section {
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;           /* ← Add this */
+  flex-direction: column;  /* ← Add this */
+}
+
+/* Subtitles */
+.chart-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Info */
+.chart-info {
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;        /* ← Add this to push to bottom */
+  width: 100%;            /* ← Add this */
+}
+
+.chart-info div {
+  display: block;         /* ← Add this */
+  margin-bottom: 4px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .charts-horizontal {
+    grid-template-columns: 1fr;
+  }
+}

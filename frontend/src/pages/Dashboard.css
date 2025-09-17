@@ -1,0 +1,86 @@
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+  min-height: calc(100vh - 64px);
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 24px 0;
+}
+
+.dashboard-title {
+  font-size: 36px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #0ea5e9, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 8px 0;
+}
+
+.dashboard-subtitle {
+  color: #6b7280;
+  font-size: 18px;
+  margin: 0;
+}
+
+/* Chart Section */
+.chart-section {
+  display: flex;
+  justify-content: center;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  width: 100%;
+  max-width: 1000px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.chart-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+  
+  .dashboard-title {
+    font-size: 28px;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 16px;
+  }
+  
+  .chart-card {
+    padding: 24px 16px;
+  }
+  
+  .chart-title {
+    font-size: 20px;
+  }
+}

@@ -1,23 +1,50 @@
-import { Link } from "react-router-dom";
-
-// src/components/Navbar.js
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import "./Navbar.css";
 
 const Navbar = () => {
+  const currentPath = window.location.pathname;
+
+  const navItems = [
+    { path: "/", label: "Dashboard" },
+    { path: "/demand", label: "Demand" },
+    { path: "/supply", label: "Supply" },
+    { path: "/calculator", label: "Calculator" },
+    { path: "/about", label: "About" }
+  ];
+
+  const isActive = (path) => currentPath === path;
+
   return (
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          CleanTech Ontario
-        </Typography>
-        <Button color="inherit" href="/">Dashboard</Button>
-        <Button color="inherit" href="/demand">Demand</Button>
-        <Button color="inherit" href="/supply">Supply</Button>
-        <Button color="inherit" href="/calculator">Calculator</Button>
-        <Button color="inherit" href="/about">About</Button>
-      </Toolbar>
-    </AppBar>
+    <div className="navbar">
+      <div className="navbar-container">
+        
+        {/* Logo */}
+        <a href="/" className="navbar-logo">
+          <div className="logo-icon">
+            ⚡
+          </div>
+          <div>
+            <h1 className="logo-text">
+              CleanTech Ontario
+            </h1>
+          </div>
+        </a>
+
+        {/* Navigation */}
+        <div className="navbar-links">
+          {navItems.map((item) => (
+            <a
+              key={item.path}
+              href={item.path}
+              className={`nav-link ${isActive(item.path) ? 'nav-link-active' : ''}`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+        
+      </div>
+    </div>
   );
 };
 
